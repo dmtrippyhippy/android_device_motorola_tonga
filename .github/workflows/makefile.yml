@@ -1,0 +1,27 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "tonga_g-user-12-S3RQS32.20-42-10-12-5-1-df86f-release-keys" ]
+  pull_request:
+    branches: [ "tonga_g-user-12-S3RQS32.20-42-10-12-5-1-df86f-release-keys" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: configure
+      run: ./configure
+
+    - name: Install dependencies
+      run: make
+
+    - name: Run check
+      run: make check
+
+    - name: Run distcheck
+      run: make distcheck
